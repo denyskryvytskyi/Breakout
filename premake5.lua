@@ -28,7 +28,8 @@ project "Breakout"
     {
         "vendor/glad/include",
         "vendor/GLFW/include",
-        "vendor/glm/include"
+        "vendor/glm/include",
+        "vendor/stb_image/include"
     }
 
     libdirs
