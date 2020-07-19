@@ -30,6 +30,8 @@ int main(int argc, char* argv[])
     GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Breakout", nullptr, nullptr);
     glfwMakeContextCurrent(window);
 
+    glfwSwapInterval(1); // vsync, без этого нагружает на 100% CPU и GPU
+
     // glad: load all OpenGL function pointers
     // ---------------------------------------
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -39,6 +41,8 @@ int main(int argc, char* argv[])
     }
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+    std::cout << glGetString(GL_VERSION) << std::endl;
 
     // OpenGL configuration
     // --------------------

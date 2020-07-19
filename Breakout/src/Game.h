@@ -4,11 +4,13 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-enum EGameState
+#include "SpriteRenderer.h"
+
+enum class EGameState
 {
-    EGameState_Active,
-    EGameState_Menu,
-    EGameState_Win
+    Active,
+    Menu,
+    Win
 };
 
 class Game
@@ -32,6 +34,8 @@ private:
     EGameState m_state;
     bool m_keys[1024];
     unsigned m_width, m_height;
+
+    SpriteRenderer* m_spriteRenderer;
 };
 
 #endif // GAME_H
