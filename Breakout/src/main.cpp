@@ -7,10 +7,12 @@
 #include <iostream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow* window);
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
 const unsigned int SCREEN_WIDTH = 800;
 const unsigned int SCREEN_HEIGHT = 600;
+
+Game Breakout(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 int main(int argc, char* argv[])
 {
@@ -40,6 +42,7 @@ int main(int argc, char* argv[])
         return -1;
     }
 
+    glfwSetKeyCallback(window, key_callback);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     std::cout << glGetString(GL_VERSION) << std::endl;
@@ -51,8 +54,7 @@ int main(int argc, char* argv[])
 
     // initialize game
     // ---------------
-    Game breakout(SCREEN_WIDTH, SCREEN_HEIGHT);
-    breakout.Init();
+    Breakout.Init();
 
     float deltaTime = 0.0f;
     float lastFrame = 0.0f;
@@ -68,18 +70,17 @@ int main(int argc, char* argv[])
 
         // input
         // -----
-        processInput(window);
-        breakout.ProcessInput(deltaTime);
+        Breakout.ProcessInput(deltaTime);
 
         // update game state
         // -----------------
-        breakout.Update(deltaTime);
+        Breakout.Update(deltaTime);
 
         // render
         // ------
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-        breakout.Render();
+        Breakout.Render();
 
         glfwSwapBuffers(window);
     }
@@ -87,10 +88,19 @@ int main(int argc, char* argv[])
     return 0;
 }
 
-void processInput(GLFWwindow* window)
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
+    if (key >= 0 && key < 1024)
+    {
+        if (action == GLFW_PRESS)
+            Breakout.m_keys[key] = true;
+        else if (action == GLFW_RELEASE)
+        {
+            Breakout.m_keys[key] = false;
+        }
+    }
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
