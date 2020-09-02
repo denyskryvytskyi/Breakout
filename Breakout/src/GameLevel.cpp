@@ -11,7 +11,7 @@ GameLevel::GameLevel()
 
 void GameLevel::Load(const char* file, unsigned int levelWidth, unsigned int levelHeight)
 {
-    m_bricks.clear();
+    m_Bricks.clear();
 
     unsigned int tileCode;
     GameLevel level;
@@ -40,15 +40,15 @@ void GameLevel::Load(const char* file, unsigned int levelWidth, unsigned int lev
 
 void GameLevel::Draw(SpriteRenderer& renderer)
 {
-    for (GameObject& tile : m_bricks)
-        if (!tile.Destroyed)
+    for (GameObject& tile : m_Bricks)
+        if (!tile.m_Destroyed)
             tile.Draw(renderer);
 }
 
 bool GameLevel::IsCompleted()
 {
-    for (GameObject& tile : this->m_bricks)
-        if (!tile.IsSolid && !tile.Destroyed)
+    for (GameObject& tile : m_Bricks)
+        if (!tile.m_IsSolid && !tile.m_Destroyed)
             return false;
     return true;
 }
@@ -69,8 +69,8 @@ void GameLevel::init(std::vector<std::vector<unsigned int>> tileData, unsigned i
                 glm::vec2 pos(unit_width * x, unit_height * y);
                 glm::vec2 size(unit_width, unit_height);
                 GameObject obj(pos, size, ResourceManager::GetTexture("block_solid"), glm::vec3(0.8f, 0.8f, 0.7f));
-                obj.IsSolid = true;
-                m_bricks.push_back(obj);
+                obj.m_IsSolid = true;
+                m_Bricks.push_back(obj);
             }
             else if (tileData[y][x] > 1)
             {
@@ -86,7 +86,7 @@ void GameLevel::init(std::vector<std::vector<unsigned int>> tileData, unsigned i
 
                 glm::vec2 pos(unit_width * x, unit_height * y);
                 glm::vec2 size(unit_width, unit_height);
-                m_bricks.push_back(GameObject(pos, size, ResourceManager::GetTexture("block"), color));
+                m_Bricks.push_back(GameObject(pos, size, ResourceManager::GetTexture("block"), color));
             }
         }
     }

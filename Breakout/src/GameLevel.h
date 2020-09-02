@@ -1,5 +1,4 @@
-#ifndef GAMELEVEL_H
-#define GAMELEVEL_H
+#pragma once
 
 #include <vector>
 
@@ -16,11 +15,10 @@ public:
 
     bool IsCompleted();
 
+public:
+    std::vector<GameObject> m_Bricks;
+
 private:
     void init(std::vector<std::vector<unsigned int>> tileData, unsigned int levelWidth, unsigned int levelHeight);
 
-private:
-    std::vector<GameObject> m_bricks;
 };
-
-#endif // GAMELEVEL_H

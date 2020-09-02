@@ -1,5 +1,4 @@
-#ifndef RESOURCE_MANAGER_H
-#define RESOURCE_MANAGER_H
+#pragma once
 
 #include <map>
 #include <string>
@@ -29,5 +28,3 @@ private:
     static Shader loadShaderFromFile(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile);
     static Texture2D loadTextureFromFile(const char* file, bool alpha);
 };
-
-#endif // RESOURCE_MANAGER_H

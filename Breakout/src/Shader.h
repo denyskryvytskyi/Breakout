@@ -1,5 +1,4 @@
-#ifndef SHADER_H
-#define SHADER_H
+#pragma once
 
 #include <string>
 
@@ -34,5 +33,3 @@ private:
 private:
     unsigned int m_id;
 };
-
-#endif // SHADER_H

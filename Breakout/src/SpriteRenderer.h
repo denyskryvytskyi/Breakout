@@ -1,5 +1,4 @@
-#ifndef SPRITE_RENDERER_H
-#define SPRITE_RENDERER_H
+#pragma once
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
@@ -22,5 +21,3 @@ private:
 
     void initRenderData();
 };
-
-#endif // SPRITE_RENDERER_H

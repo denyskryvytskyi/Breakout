@@ -1,5 +1,4 @@
-#ifndef TEXTURE_H
-#define TEXTURE_H
+#pragma once
 
 #include <glad/glad.h>
 
@@ -28,5 +27,3 @@ private:
     unsigned int m_filterMin;
     unsigned int m_filterMax;
 };
-
-#endif // TEXTURE_H
